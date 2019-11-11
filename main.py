@@ -12,19 +12,30 @@ def in_range(grid, i, j):
 
     return True
 
-def detonate_bomb(grid, i, j):
+def detonate_bombs(grid, i, j):
     if(not in_range(grid, i, j) or grid[i][j] == 'X'):
         return 
 
-    grid[i][j] = '.'
 
-    if(grid[i][j] == 'O'):
+    print('===============================')
+    print('i', i)
+    print('j', j)
+    print('grid ixj', grid[i][j] )
+    # print('i' = )
+    print('===============================')
+
+    if(grid[i][j] in ['O', '1'] ):
+        grid[i][j] = '.'
         return
+
+    grid[i][j] = '.'
 
     detonate_bomb(grid, i + 1, j)
     detonate_bomb(grid, i - 1, j)
     detonate_bomb(grid, i, j + 1)
     detonate_bomb(grid, i, j - 1)
+    return     
+
 
 def increase_bomb_timer(grid, i, j):
     if(grid[i][j] == 'O'):
@@ -32,7 +43,7 @@ def increase_bomb_timer(grid, i, j):
     elif(grid[i][j] == '1'):
         grid[i][j] = '2'
     else:
-        detonate_bomb(grid, i, j)
+        grid[i][j] = '3'
 
 def get_input_grid():
     # rows >= 1
@@ -58,6 +69,7 @@ def start_bomberman():
                 for j in range(num_cols):
                     if(grid[i][j] not in ['.', 'X']):
                         increase_bomb_timer(grid, i, j)
+            detonate_bombs(grid, i, j)
             # if (second % 2 == 0):
                 # plant bombs
             # else if (second != 1 and second % 2 == 1):
