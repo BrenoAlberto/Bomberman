@@ -10,11 +10,11 @@
 * Insira o grid linha por linha sem separação entre caracteres `Exemplo da primeira linha: ..XO...`
 
 * Ou copie e cole as configurações inicias e grid no input 
-`Exemplo:`
-6 7 3
-.......
-..XO...
-....O..
-.X.....
-OOX....
-OO.....
+`Exemplo:`<br/>
+6 7 3<br/>
+.......<br/>
+..XO...<br/>
+....O..<br/>
+.X.....<br/>
+OOX....<br/>
+OO.....<br/>
