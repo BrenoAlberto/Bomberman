@@ -8,13 +8,15 @@ class BombermanSimulacrum:
             grid: grid inicial onde a simulação ocorrerá
 
         """
+
         self.num_rows = num_rows
         self.num_cols = num_cols
         self.n_seconds = n_seconds
         self.grid = grid
-        self.exploding_bombs_map = []
+        self.exploding_bombs_map = []  # lista para guardar a localização das bombas e simular uma explosão "simultânea"
 
     def start_simulation(self):
+        # itera pelos segundos
         for second in range(self.n_seconds + 1):
             for i in range(self.num_rows):
                 for j in range(self.num_cols):
@@ -31,7 +33,7 @@ class BombermanSimulacrum:
         self.print_grid()
 
     def increase_bomb_timer(self, i: int, j: int):
-        """ Incrementa o timer da bomba, e caso alcançe 3 segundos de vida adiciona no mapa de bombas explodindo
+        """ Incrementa o timer da bomba, caso alcançe 3 segundos de vida adiciona no map de bombas explodindo
 
         Args:
             i: linha.
@@ -73,7 +75,7 @@ class BombermanSimulacrum:
         return True
 
     def locate_and_detonate_bombs(self):
-        # """ Percorre o mapa de bombas explodindo  """
+        """ Caso exista elementos no map de bombas explodindo, percorre o map e explode a bomba e sua linha/coluna  """
         if(len(self.exploding_bombs_map) > 0):
             for bomb_location in self.exploding_bombs_map:
                 self.detonate_bomb(bomb_location[0], bomb_location[1])
@@ -89,6 +91,8 @@ class BombermanSimulacrum:
 
         """
         self.grid[i][j] = '.'
+
+        #inicializa e reinicializa r(row) e c(col) com o ponto inicial da bomba e apartir disso itera até os limite da linha/coluna explodindo os campos
 
         r, c = i, j
         while(r > 0):
@@ -137,7 +141,7 @@ def get_input_grid():
 
     grid = []
     for _ in range(int(num_rows)):
-        grid.append(list(input()))
+        grid.append(list(input())) # pede um input para cada linha de num_rows especificada no input anterior
 
     return int(num_rows), int(num_cols), int(n_seconds), grid
 
